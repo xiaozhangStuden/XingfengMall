@@ -1,27 +1,30 @@
 <template>
-<div class='Login'>
-  登录页
-</div>
+  <div class="Login">
+    <HeaderBar isMore>
+      <template #center><div class="Login-text">登录</div></template>
+    </HeaderBar>
+    <Logo></Logo>
+    <LoginForm></LoginForm>
+  </div>
 </template>
 
 <script>
-
+import LoginForm from './components/LoginForm.vue'
 export default {
   name: 'Login',
-  components: {},
+  components: { LoginForm },
   data () {
-    return {
-
-    }
+    return {}
   },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 
 <style lang='less' scoped>
-.Login{
-  font-size: 20px;
+.Login {
+  .Login-text {
+    font-size: 27px;
+  }
+
 }
 </style>
