@@ -1,7 +1,8 @@
 <template>
   <div class="Login">
-    <HeaderBar isMore>
-      <template #center><div class="Login-text">登录</div></template>
+    <HeaderBar isMore isBack>
+      <template #center>
+        <div class="Login-text">登录</div></template>
     </HeaderBar>
     <Logo></Logo>
     <LoginForm></LoginForm>
@@ -18,10 +19,11 @@ export default {
   },
   methods: {}
 }
-</script>
+</script>s
 
 <style lang='less' scoped>
 .Login {
+  height: 100%;
   .Login-text {
     font-size: 27px;
   }

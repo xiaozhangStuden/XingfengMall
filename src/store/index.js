@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import getters from './getters'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const Store = new Vuex.Store({
   state: {
-  },
-  getters: {
+    // 全局的 状态
+    AnimationName: 'Side-fead'
   },
   mutations: {
   },
   actions: {
   },
-  modules: {
-  }
+  getters
 })
+export default Store

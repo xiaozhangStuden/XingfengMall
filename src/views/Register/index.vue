@@ -1,11 +1,16 @@
 <template>
-<div class='index'></div>
+<div class='Register'>
+    <HeaderBar isMore isBack>
+      <template #center><div class="Login-text">注册</div></template>
+    </HeaderBar>
+    <Logo></Logo>
+</div>
 </template>
 
 <script>
 
 export default {
-  name: 'index',
+  name: 'Register',
   components: {},
   data () {
     return {

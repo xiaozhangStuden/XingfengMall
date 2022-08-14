@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <transition name='Side-fead' mode="out-in">
+      <transition :name='transitionName()' mode="out-in">
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
@@ -12,12 +12,10 @@
 export default {
   methods: {
     transitionName () {
-      return 'Side-fead'
+      return this.$store.getters.AnimationName
     }
   }
 }
 </script>
 <style lage='less' scoped>
-#app {
-}
 </style>

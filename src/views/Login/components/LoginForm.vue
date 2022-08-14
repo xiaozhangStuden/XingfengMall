@@ -29,7 +29,7 @@
       </van-field> -->
       <div class="LoginModel">
         <SliderValide></SliderValide>
-        <div class="Go-Register">立即注册</div>
+        <div class="Go-Register" @click="$router.push('/register')">立即注册</div>
       </div>
       <div style="margin: 16px">
         <van-button

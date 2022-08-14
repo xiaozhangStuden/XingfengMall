@@ -24,7 +24,6 @@ export default {
 <style lang='less' scoped>
 .Logo {
   width: 100%;
-  height: 100%;
   img {
     display: block;
     width: 230px;
