@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <transition :name='transitionName()' mode="out-in">
+      <transition :name="transitionName()" mode="out-in">
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
@@ -9,10 +9,15 @@
 </template>
 
 <script>
+import router from './router'
 export default {
   methods: {
     transitionName () {
-      return this.$store.getters.AnimationName
+      if (this.$route.meta.Animation) {
+        return this.$store.getters.AnimationName
+      } else {
+        return ''
+      }
     }
   }
 }

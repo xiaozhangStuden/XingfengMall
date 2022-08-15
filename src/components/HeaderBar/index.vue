@@ -34,7 +34,12 @@ export default {
   },
   methods: {
     Back () {
-      this.$router.go(-1)
+      console.log(this.$route)
+
+      this.$store.commit('UpdateName', true)
+      this.$nextTick(() => {
+        this.$router.go(-1)
+      })
     }
   }
 }

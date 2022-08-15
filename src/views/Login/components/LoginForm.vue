@@ -1,20 +1,20 @@
 <template>
   <div class="LoginForm">
-    <van-form @submit="OnLogin">
+    <van-form @submit="OnLogin"  ref='loginForm'>
       <van-field
-        v-model="username"
+        v-model="loginName"
         name="用户名"
         label="用户名"
         placeholder="用户名"
         :rules="[{ required: true, message: '请填写用户名' },{pattern ,message:'请输入正确的手机号'}]"
       />
       <van-field
-        v-model="password"
+        v-model="passwordMd5"
         type="password"
         name="密码"
         label="密码"
         placeholder="密码"
-        :rules="[{ required: true, message: '请填写密码' },{pattern:pwdValide,message:'密码必须以字母开头，且长度为6-15字符之间'}]"
+        :rules="[{ required: true, message: '请填写密码' },]"
       />
       <!-- <van-field
         v-model="Code"
@@ -28,8 +28,8 @@
         </template>
       </van-field> -->
       <div class="LoginModel">
-        <SliderValide></SliderValide>
-        <div class="Go-Register" @click="$router.push('/register')">立即注册</div>
+        <SliderValide v-model="SilderStatus"></SliderValide>
+        <div class="Go-Register" @click="$router.push('/register')">去注册</div>
       </div>
       <div style="margin: 16px">
         <van-button
@@ -47,20 +47,33 @@
 </template>
 
 <script>
+import { login } from '@/api/Login'
+import md5 from 'md5'
+import { setCache } from '@/utils/Cache'
+import { Toast } from 'vant'
 export default {
   name: 'LoginForm',
   components: {},
   data () {
     return {
-      username: '',
-      password: '',
+      loginName: '',
+      passwordMd5: '',
       Code: '',
+      SilderStatus: false,
       pattern: /^((\+|00)86)?1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d{8}$/,
       pwdValide: /^[A-Za-z][A-Za-z0-9]{6,15}$/
     }
   },
   methods: {
-    OnLogin () {}
+    async OnLogin () {
+      if (!this.SilderStatus) return Toast.fail('请完成滑块验证')
+      const res = await login({ loginName: this.loginName, passwordMd5: md5(this.passwordMd5) })
+      // {pattern:pwdValide,message:'密码必须以字母开头，且长度为6-15字符之间'}
+      if (res.data.resultCode !== 200) return
+      Toast.success('登录成功')
+      setCache('token', res.data.data)
+      this.$router.push('/home')
+    }
   }
 }
 </script>
@@ -84,6 +97,7 @@ export default {
     padding: 30px 30px 20px 30px;
   }
   .Go-Register {
+    width: 100px;
     font-size: 28px;
     color: #1989fa;
     margin-top: 30px;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +22,22 @@
   <div id="app"></div>
   <!-- built files will be auto injected -->
   <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=95b310ec5e96c0094a121c59b676a1bb"></script>
+  <script>
+ const mql = window.matchMedia('(orientation: portrait)')
+console.log(mql)
+
+function handleOrientationChange (mql) {
+  if (mql.matches) {
+    
+  } else {
+    console.log('横屏')
+  }
+}
+// 输出当前屏幕模式
+handleOrientationChange(mql)
+// 监听屏幕模式变化
+mql.addListener(handleOrientationChange)
+  </script>
 </body>
 
 </html>

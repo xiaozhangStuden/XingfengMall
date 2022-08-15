@@ -10,6 +10,18 @@ const Store = new Vuex.Store({
     AnimationName: 'Side-fead'
   },
   mutations: {
+    UpdateName (state, payload) {
+      console.log(payload)
+      if (payload) {
+        console.log(111)
+        state.AnimationName = 'Side-fead-right'
+      } else {
+        state.AnimationName = 'Side-fead'
+      }
+    }
+    // resetStatus (state) {
+    //   state.AnimationName = 'Side-fead'
+    // }
   },
   actions: {
   },

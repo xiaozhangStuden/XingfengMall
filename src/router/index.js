@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,7 +12,8 @@ const routes = [
     name: 'Home',
     component: () => import('@/views/Home/index.vue'),
     meta: {
-      title: '首页'
+      title: '首页',
+      Animation: false
     }
   },
   {
@@ -21,7 +21,8 @@ const routes = [
     name: 'Category',
     component: () => import('@/views/Category/index.vue'),
     meta: {
-      title: '分类'
+      title: '分类',
+      Animation: false
     }
   },
   {
@@ -29,7 +30,8 @@ const routes = [
     name: 'Login',
     component: () => import('@/views/Login/index.vue'),
     meta: {
-      title: '登录'
+      title: '登录',
+      Animation: false
     }
   },
   {
@@ -37,7 +39,8 @@ const routes = [
     name: 'Register',
     component: () => import('@/views/Register/index.vue'),
     meta: {
-      title: '注册'
+      title: '注册',
+      Animation: false
     }
   }
 ]

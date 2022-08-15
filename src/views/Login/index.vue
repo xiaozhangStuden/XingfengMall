@@ -1,6 +1,6 @@
 <template>
   <div class="Login">
-    <HeaderBar isMore isBack>
+    <HeaderBar isMore>
       <template #center>
         <div class="Login-text">登录</div></template>
     </HeaderBar>

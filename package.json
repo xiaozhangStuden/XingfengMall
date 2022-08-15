@@ -10,7 +10,10 @@
   "dependencies": {
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
+    "flexible.js": "^2.0.19",
+    "js-cookie": "^3.0.1",
     "lib-flexible": "^0.3.2",
+    "md5": "^2.3.0",
     "normalize.css": "^8.0.1",
     "vant": "^2.12.48",
     "vue": "^2.6.14",
