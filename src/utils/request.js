@@ -1,10 +1,10 @@
+import { getCache } from '@/utils/Cache'
 import axios from 'axios'
-
 const services = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
 })
-
+axios.defaults.headers.Authorization = getCache('token') || ''
 services.interceptors.request.use((config) => {
   // 成功的请求
   return config

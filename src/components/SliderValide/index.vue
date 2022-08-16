@@ -71,6 +71,7 @@ export default {
         this.$refs.ChangesSlider.style.width = '72vw'
         this.$refs.SliderBox.style.left = '72vw'
       } else {
+
         this.Bgc = '#fa5151'
         this.SilderStatus = false
         this.MoveClientX = 0

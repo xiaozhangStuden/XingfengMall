@@ -1,6 +1,6 @@
 <template>
 <div class='RegisterForm'>
-  <van-form @submit="OnRegister">
+  <van-form @submit="OnRegister" @failed="onFailed">
   <van-field
     v-model="username"
     name="用户名"
@@ -17,15 +17,17 @@
     :rules="[{ required: true, message: '请填写密码' }]"
   />
   <van-field
-    v-model="password"
-    type="password"
-    name="密码"
+    v-model="affirmPassword"
+    type="affirmPassword"
+    name="affirmPassword"
     label="确认密码"
     placeholder="确认密码"
-    :rules="[{ required: true, message: '请填写确认密码' }]"
+    :rules="[{ required: true, message: '请填写确认密码' },{validator:valideAffrimPwd ,message:'两次密码不一致'}]"
   />
+
   <div class="Register-Model">
-    <div class="Go-Login" @click="$router.push('/login')">去登录</div>
+    <SliderValide v-model="SilderStatus"></SliderValide>
+    <div class="Go-Login" :style="{marginTop:'15px'}" @click="$router.push('/login')">已有账号登录</div>
   </div>
   <div style="margin: 16px;">
     <van-button round block type="info" class="handel-Reg" native-type="submit">注册</van-button>
@@ -35,19 +37,34 @@
 </template>
 
 <script>
-
+import { Toast } from 'vant'
+import { UserRegister } from '@/api/User'
 export default {
   name: 'RegisterForm',
   components: {},
   data () {
     return {
       username: '',
-      password: ''
+      password: '',
+      affirmPassword: '',
+      SilderStatus: false
     }
   },
   methods: {
-    OnRegister () {
+    async OnRegister () {
+      if (!this.SilderStatus) return Toast.fail('请先进行验证')
 
+      const res = await UserRegister()
+    },
+    valideAffrimPwd (value) {
+      if (this.password !== value) {
+        return true
+      } else {
+        console.log(2222)
+      }
+    },
+    onFailed (errorInfo) {
+      console.log('failed', errorInfo)
     }
   }
 }
@@ -75,7 +92,7 @@ export default {
      padding: 30px 30px 20px 30px;
   }
   .Go-Login {
-    width: 100px;
+    width: 30%;
     font-size: 28px;
     color: #1989fa;
   }

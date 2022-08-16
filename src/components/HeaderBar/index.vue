@@ -1,8 +1,8 @@
 <template>
   <div class="HeaderBar">
-    <div class="Header-left" @click="Back">
-      <i class="nbicon nbfanhui ScopedSize " v-if="isBack"></i>
-      <slot v-else name="left" class="ScopedSize"> </slot>
+    <div class="Header-left">
+      <i class="nbicon nbfanhui ScopedSize" @click="Back" v-if="isBack"></i>
+      <slot v-else name="left" class="ScopedSize"></slot>
     </div>
     <div class="Header-Center">
        <slot name="center" class="ScopedSize"></slot>
@@ -57,6 +57,8 @@ export default {
   .Header-Center {
     display: flex;
     flex: 1;
+    height: 100%;
+    align-items: center;
     justify-content: center;
   }
   .Header-left,

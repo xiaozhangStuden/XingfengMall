@@ -5,6 +5,7 @@ import Vant from 'vant'
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import './RouterBeforeEach'
 import store from './store'
 Vue.config.productionTip = false
 

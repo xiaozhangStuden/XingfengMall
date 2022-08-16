@@ -1,9 +1,13 @@
 <template>
   <div class="Logo">
-      <img
-        src="https://s.yezgea02.com/1604045825972/newbee-mall-vue3-app-logo.png"
+    <div>
+       <img
+      @load="LoadImage"
+        :src="url"
         alt="加载失败"
       />
+    </div>
+      <van-skeleton v-if="LoadStatus" title :row="3" />
   </div>
 </template>
 
@@ -13,10 +17,14 @@ export default {
   components: {},
   data () {
     return {
-      Status: false
+      url: 'https://s.yezgea02.com/1604045825972/newbee-mall-vue3-app-logo.png',
+      LoadStatus: true
     }
   },
   methods: {
+    LoadImage () {
+      this.LoadStatus = false
+    }
   }
 }
 </script>

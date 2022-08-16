@@ -31,7 +31,7 @@ const routes = [
     component: () => import('@/views/Login/index.vue'),
     meta: {
       title: '登录',
-      Animation: false
+      Animation: true
     }
   },
   {
@@ -40,6 +40,24 @@ const routes = [
     component: () => import('@/views/Register/index.vue'),
     meta: {
       title: '注册',
+      Animation: true
+    }
+  },
+  {
+    path: '/shopcart',
+    name: 'ShopCart',
+    component: () => import('@/views/ShopCart/index.vue'),
+    meta: {
+      title: '购物车',
+      Animation: false
+    }
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: () => import('@/views/Profile/index.vue'),
+    meta: {
+      title: '我的',
       Animation: false
     }
   }

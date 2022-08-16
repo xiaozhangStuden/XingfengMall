@@ -39,6 +39,7 @@
           class="Handel-Login"
           color="#1baeae"
           native-type="submit"
+          @keydown.enter="OnLogin"
           >登录</van-button
         >
       </div>
@@ -47,7 +48,7 @@
 </template>
 
 <script>
-import { login } from '@/api/Login'
+import { login } from '@/api/User'
 import md5 from 'md5'
 import { setCache } from '@/utils/Cache'
 import { Toast } from 'vant'

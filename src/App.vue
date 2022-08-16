@@ -5,11 +5,11 @@
           <router-view></router-view>
         </keep-alive>
       </transition>
+      <Navbar></Navbar>
   </div>
 </template>
 
 <script>
-import router from './router'
 export default {
   methods: {
     transitionName () {

@@ -19,9 +19,6 @@ const Store = new Vuex.Store({
         state.AnimationName = 'Side-fead'
       }
     }
-    // resetStatus (state) {
-    //   state.AnimationName = 'Side-fead'
-    // }
   },
   actions: {
   },

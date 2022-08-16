@@ -1,6 +1,9 @@
 <template>
-<div class='Home'>首页
-  <button @click="GoCategory">跳转</button>
+<div class='Home'>
+   <HeaderBar isMore>
+      <template #left> <i class="iconfont icon-gengduo"></i></template>
+      <template #center><div class="Home-Text">首页</div></template>
+    </HeaderBar>
 </div>
 
 </template>
@@ -26,6 +29,12 @@ export default {
 <style lang='less' scoped>
 .Home{
   height: 100%;
-  background-color: #CCF;
+  background-color: #fff;
+  .icon-gengduo{
+    color: #1baeae;
+  }
+  .Home-Text{
+    font-size: 28px;
+  }
 }
 </style>
