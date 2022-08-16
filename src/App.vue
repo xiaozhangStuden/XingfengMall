@@ -5,7 +5,7 @@
           <router-view></router-view>
         </keep-alive>
       </transition>
-      <Navbar></Navbar>
+      <Navbar v-if="hasOneOwnNavbar()"></Navbar>
   </div>
 </template>
 
@@ -18,6 +18,11 @@ export default {
       } else {
         return ''
       }
+    },
+    hasOneOwnNavbar () {
+      const path = this.$route.path
+      const blackList = ['/login', '/login']
+      return !blackList.includes(path)
     }
   }
 }
