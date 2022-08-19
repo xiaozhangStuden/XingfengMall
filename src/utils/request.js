@@ -13,7 +13,7 @@ services.interceptors.request.use((config) => {
 })
 
 services.interceptors.response.use((response) => {
-  return response
+  return response.data
 }, err => {
   return Promise.reject(err)
 })

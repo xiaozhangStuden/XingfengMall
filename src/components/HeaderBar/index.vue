@@ -55,7 +55,6 @@ export default {
   box-sizing: border-box;
   padding: 0px 10px;
   align-items: center;
-  border-bottom: 1px solid #f5f6f7;
   .Header-Center {
     display: flex;
     flex: 1;

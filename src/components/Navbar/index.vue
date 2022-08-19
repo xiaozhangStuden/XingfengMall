@@ -56,6 +56,7 @@ export default {
   align-items: center;
   border-top: 1px solid #f5f6f7 ;
   box-shadow: 5px 5px 5px #888888;
+  background-color: #fff;
   div{
     display: flex;
     justify-content: center;

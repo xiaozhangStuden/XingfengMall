@@ -70,7 +70,7 @@ export default {
       if (!this.SilderStatus) return Toast.fail('请完成滑块验证')
       const res = await login({ loginName: this.loginName, passwordMd5: md5(this.passwordMd5) })
       // {pattern:pwdValide,message:'密码必须以字母开头，且长度为6-15字符之间'}
-      if (res.data.resultCode !== 200) return
+      if (res.resultCode !== 200) return
       Toast.success('登录成功')
       setCache('token', res.data.data)
       this.$router.push('/home')

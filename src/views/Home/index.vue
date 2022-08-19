@@ -1,6 +1,6 @@
 <template>
-<div class='Home'>
-   <HeaderBar class="base-header">
+  <div class="Home">
+    <HeaderBar class="base-header">
       <template #left> <i class="iconfont icon-gengduo"></i></template>
       <template #center>
         <div class="XinFeng-Search">
@@ -10,58 +10,122 @@
             </div>
             <div class="Serach-input">
               <i class="iconfont icon-sousuo"></i>
-              <input type="text" placeholder="搜索">
+              <input type="text" placeholder="搜索"/>
             </div>
           </div>
         </div>
       </template>
       <template #right><i class="iconfont icon-wode"></i></template>
     </HeaderBar>
-    <Swiper class="Swiper">
-
-    </Swiper>
-</div>
-
+    <div class="Home-Body">
+    <Swiper class="Swiper" :SwiperList='SwiperList'> </Swiper>
+    <HomeCategory :CategoryList='CategoryList'/>
+    <HomeHeader message='精选好物'></HomeHeader>
+    <GoodsItem v-for="item in NewsGoodsList" :key="item.goodsId" :GoodsItem='item'></GoodsItem>
+    </div>
+  </div>
 </template>
 
 <script>
-
+import { getHomeInfo } from '@/api/Home'
+import HomeCategory from './components/Home-Category.vue'
+import HomeHeader from './components/Home-header.vue'
+import GoodsItem from './components/Goods-item.vue'
 export default {
   name: 'Home',
-  components: {},
+  components: {
+    HomeCategory,
+    HomeHeader,
+    GoodsItem
+  },
+  created () {
+    this.LoadHomeInfo()
+  },
   data () {
     return {
-
+      SwiperList: [],
+      HotGoodsList: [],
+      NewsGoodsList: [],
+      RecommendGoodsList: [],
+      CategoryList: [
+        {
+          name: '新蜂超市',
+          imgUrl: 'https://s.yezgea02.com/1604041127880/%E8%B6%85%E5%B8%82%402x.png',
+          categoryId: 100001
+        }, {
+          name: '新蜂服饰',
+          imgUrl: 'https://s.yezgea02.com/1604041127880/%E6%9C%8D%E9%A5%B0%402x.png',
+          categoryId: 100003
+        }, {
+          name: '全球购',
+          imgUrl: 'https://s.yezgea02.com/1604041127880/%E5%85%A8%E7%90%83%E8%B4%AD%402x.png',
+          categoryId: 100002
+        }, {
+          name: '新蜂生鲜',
+          imgUrl: 'https://s.yezgea02.com/1604041127880/%E7%94%9F%E9%B2%9C%402x.png',
+          categoryId: 100004
+        }, {
+          name: '新蜂到家',
+          imgUrl: 'https://s.yezgea02.com/1604041127880/%E5%88%B0%E5%AE%B6%402x.png',
+          categoryId: 100005
+        }, {
+          name: '充值缴费',
+          imgUrl: 'https://s.yezgea02.com/1604041127880/%E5%85%85%E5%80%BC%402x.png',
+          categoryId: 100006
+        }, {
+          name: '9.9元拼',
+          imgUrl: 'https://s.yezgea02.com/1604041127880/9.9%402x.png',
+          categoryId: 100007
+        }, {
+          name: '领劵',
+          imgUrl: 'https://s.yezgea02.com/1604041127880/%E9%A2%86%E5%88%B8%402x.png',
+          categoryId: 100008
+        }, {
+          name: '省钱',
+          imgUrl: 'https://s.yezgea02.com/1604041127880/%E7%9C%81%E9%92%B1%402x.png',
+          categoryId: 100009
+        }, {
+          name: '全部',
+          imgUrl: 'https://s.yezgea02.com/1604041127880/%E5%85%A8%E9%83%A8%402x.png',
+          categoryId: 100010
+        }
+      ]
     }
   },
   methods: {
-    GoCategory () {
-      this.$router.push('/category')
+    async LoadHomeInfo () {
+      const { data } = await getHomeInfo()
+      this.SwiperList = data.carousels
+      this.HotGoodsList = data.hotGoodses
+      this.NewsGoodsList = data.newGoodses
+      this.RecommendGoodsList = data.recommendGoodses
     }
   }
 }
 </script>
 
 <style lang='less' scoped>
-@import '../../styles/variable.less';
-.Home{
+.Home {
   background-color: #fff;
-  .icon-gengduo,.icon-wode{
+  min-width: 350px;
+  .icon-gengduo,
+  .icon-wode {
     color: #fff;
-
   }
-  .Home-Text{
+  .Home-Text {
     font-size: 28px;
   }
-  .base-header{
+  .base-header {
+    position: fixed;
+    z-index: 2;
     background-color: @primary;
   }
-  .XinFeng-Search{
+  .XinFeng-Search {
     display: flex;
     width: 100%;
     height: 100%;
     padding: 0px 15px;
-    .Search-model{
+    .Search-model {
       display: flex;
       width: 100%;
       border-radius: 30px;
@@ -69,41 +133,44 @@ export default {
       padding: 0px 10px;
       align-items: center;
       margin: 15px 0px;
-      .Search-title{
+      .Search-title {
         text-align: center;
         padding: 0px 15px;
         border-right: 1px solid #7e7e7e;
       }
-      .Serach-input{
+      .Serach-input {
         display: flex;
         flex: 1;
         width: 100%;
         height: 100%;
         align-items: center;
 
-        i{
+        i {
           margin-left: 15px;
         }
-        input{
+        input {
           width: 100%;
           font-size: 25px;
           height: 100%;
           margin-left: 10px;
           background: transparent;
-          &::placeholder{
-            font-size: 30px;
-            line-height: 34px;
+          &::placeholder {
+            font-size: 25px;
           }
         }
       }
-      p{
+      p {
         font-size: 40px;
         color: @primary;
         font-weight: 700;
       }
     }
   }
-  .Swiper{
+  .Home-Body{
+    padding-top: 90px;
+    padding-bottom: 112px;
+  }
+  .Swiper {
     margin-top: -1px;
   }
 }

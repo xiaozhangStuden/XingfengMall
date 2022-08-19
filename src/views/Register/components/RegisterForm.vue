@@ -71,7 +71,6 @@ export default {
 </script>
 
 <style lang='less' scoped>
-@import '../../../styles/variable.less';
 .RegisterForm{
     padding: 30px 35px;
  .van-cell {
