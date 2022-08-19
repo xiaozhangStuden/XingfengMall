@@ -1,6 +1,7 @@
 <template>
 <div class='Goods-item' v-if="Object.keys(GoodsItem)">
-  <img :src="GoodsItem.goodsCoverImg" alt="">
+  <img   @load="()=>LoadSuccessImg = true" @error="()=> LoadSuccessImg = false" v-show="LoadSuccessImg" :src="GoodsItem.goodsCoverImg" alt="">
+  <Skeleton height='125px'  v-if="!LoadSuccessImg" ></Skeleton>
   <div class="Goods-info">
   <div>{{GoodsItem.goodsName}}</div>
   <span>￥{{GoodsItem.sellingPrice}}</span>
@@ -19,14 +20,10 @@ export default {
       default: () => {}
     }
   },
-  components: {},
   data () {
     return {
-
+      LoadSuccessImg: false
     }
-  },
-  methods: {
-
   }
 }
 </script>
@@ -42,6 +39,7 @@ export default {
   img{
     width: 230px;
     margin: 0 auto;
+    .animation(fadeIn,1.5s,linear,.5s);
   }
   .Goods-info{
     box-sizing: border-box;

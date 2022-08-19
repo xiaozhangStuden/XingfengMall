@@ -22,6 +22,10 @@
     <HomeCategory :CategoryList='CategoryList'/>
     <HomeHeader message='精选好物'></HomeHeader>
     <GoodsItem v-for="item in NewsGoodsList" :key="item.goodsId" :GoodsItem='item'></GoodsItem>
+    <HomeHeader message='热门商品'></HomeHeader>
+    <GoodsItem v-for="item in HotGoodsList" :key="item.goodsCoverImg" :GoodsItem='item'></GoodsItem>
+    <HomeHeader message='最新推荐'></HomeHeader>
+    <GoodsItem v-for="item in RecommendGoodsList" :key="item.goodsCoverImg" :GoodsItem='item'></GoodsItem>
     </div>
   </div>
 </template>
@@ -113,7 +117,7 @@ export default {
     color: #fff;
   }
   .Home-Text {
-    font-size: 28px;
+    font-size: 14px;
   }
   .base-header {
     position: fixed;

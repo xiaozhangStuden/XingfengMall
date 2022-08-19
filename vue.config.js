@@ -1,5 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
-
+const ImportLessFile = (Path) => path.resolve(__dirname, Path)
+const BASELESSFIlEPATH = './src/styles/'
 const path = require('path')
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -16,6 +17,7 @@ module.exports = defineConfig({
       }
     }
   }
+
 })
 module.exports = {
   pluginOptions: {
@@ -23,7 +25,8 @@ module.exports = {
       preProcessor: 'less',
       patterns: [
         // 全局less变量存储路径
-        path.resolve(__dirname, './src/styles/variable.less')
+        ImportLessFile(BASELESSFIlEPATH + 'variable.less'),
+        ImportLessFile(BASELESSFIlEPATH + 'mxins.less')
       ]
     }
   }

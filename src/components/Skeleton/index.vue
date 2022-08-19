@@ -1,40 +1,47 @@
 <template>
-<div class='Skeleton'>
-  <p class="Skeleton-P">
-  </p>
-</div>
+<div class='Skeleton'><p class="Skeleton-P" :style="{width,height}"></p></div>
 </template>
-
 <script>
-
 export default {
   name: 'Skeleton',
-  components: {},
-  data () {
-    return {
-
+  props: {
+    width: {
+      type: String,
+      default: '100%'
+    },
+    height: {
+      type: String,
+      default: '20px'
+    },
+    color: {
+      type: String,
+      default: '#dadcdd'
     }
-  },
-  methods: {
-
   }
 }
 </script>
 
 <style lang='less' scoped>
-.Skeleton-P{
-  width: 500px;
-  height: 30px;
-  border-radius: 5px;
-  background-color: #dadcdd;
-  animation: breathind 1s linear 1s infinite;
+.Skeleton{
+  height: 100%;
+  width: 100%;
 }
-@keyframes breathind {
-  0%{
-    background-color: #f2f3f5;
+.Skeleton-P{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #eceff0;
+  -webkit-animation: skeleton-blink 1.2s ease-in-out infinite;
+  animation: skeleton-blink 1.2s ease-in-out infinite
+}
+@keyframes skeleton-blink {
+  50% {
+    opacity: .6
   }
-  100%{
-    background-color: #e3e4e6;
+}
+@-webkit-keyframes skeleton-blink {
+ 50% {
+    opacity: .6
   }
 }
 </style>

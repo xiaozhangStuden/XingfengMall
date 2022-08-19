@@ -39,7 +39,7 @@ export default {
     display: block;
     width: 100%;
     height: 100%;
-    animation: fadeIn 1s linear;
+    .animation(fadeIn,1.5s,linear,.5s);
   }
 }
 /deep/ .van-swipe__indicators{
@@ -49,8 +49,5 @@ export default {
   width: 15px;
   height: 15px;
 }
-@keyframes fadeIn {
-0% { opacity: 0 }
-100% { opacity: 1 }
-}
+
 </style>
