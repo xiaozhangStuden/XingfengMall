@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-      <transition :name="transitionName()" mode="out-in">
-        <keep-alive>
+      <transition :name="transitionName()" >
+        <keep-alive :include="['Home','Category,Swiper']">
           <router-view></router-view>
         </keep-alive>
       </transition>
@@ -11,6 +11,9 @@
 
 <script>
 export default {
+  data () {
+    return {}
+  },
   methods: {
     transitionName () {
       if (this.$route.meta.Animation) {
@@ -21,9 +24,10 @@ export default {
     },
     hasOneOwnNavbar () {
       const path = this.$route.path
-      const blackList = ['/login', '/login']
+      const blackList = ['/login', '/register']
       return !blackList.includes(path)
     }
+
   }
 }
 </script>

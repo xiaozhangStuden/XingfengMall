@@ -3,7 +3,7 @@
     <HeaderBar class="base-header">
       <template #left> <i class="iconfont icon-gengduo"></i></template>
       <template #center>
-        <div class="XinFeng-Search">
+        <div class="XinFeng-Search" @click="$route.push()">
           <div class="Search-model">
             <div class="Search-title">
               <p>新蜂商城</p>

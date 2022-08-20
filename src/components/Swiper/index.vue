@@ -1,11 +1,14 @@
 <template>
   <div class="Swiper">
-     <van-swipe class="my-swipe" v-if="SwiperList.length" :autoplay="3000" indicator-color="#a3b7c8">
-      <van-swipe-item v-for="item in SwiperList" :key="item.carouselUrl">
-        <img  :src="item.carouselUrl" />
-      </van-swipe-item>
-    </van-swipe>
-    <van-skeleton v-else style="margin-top:15px"  title :row="3" />
+     <transition name="fade">
+        <van-swipe class="my-swipe" v-if="SwiperList.length" :autoplay="3000" indicator-color="#a3b7c8">
+        <van-swipe-item v-for="item in SwiperList" :key="item.carouselUrl">
+        <img :src="item.carouselUrl" />
+      </van-swipe-item></van-swipe>
+        <!-- <div v-else  >
+          <van-skeleton style="margin-top:15px"  title :row="3" />
+        </div> -->
+     </transition>
   </div>
 </template>
 
@@ -23,9 +26,10 @@ export default {
   name: 'Swiper',
   components: {},
   data () {
-    return {}
-  },
-  methods: {}
+    return {
+      isLoadSuccess: false
+    }
+  }
 }
 </script>
 
@@ -39,10 +43,9 @@ export default {
     display: block;
     width: 100%;
     height: 100%;
-    .animation(fadeIn,1.5s,linear,.5s);
   }
 }
-/deep/ .van-swipe__indicators{
+ linear/deep/ .van-swipe__indicators{
   bottom: 25px;
 }
 /deep/ .van-swipe__indicator {
