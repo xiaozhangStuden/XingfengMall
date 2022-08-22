@@ -4,7 +4,7 @@
       <template #center>
         <div class="Search-Box">
           <i class="iconfont icon-sousuo"></i>
-          <input type="text" name="Goods" placeholder="搜索">
+          <input @input="SearchResult" v-model="SearchValue" type="text" name="Goods" placeholder="搜索">
         </div>
       </template>
       <template #right>
@@ -15,17 +15,20 @@
 </template>
 
 <script>
+import { debounce } from '@/utils/debounce'
 export default {
   name: 'Search',
-  components: {},
   data () {
     return {
-
+      SearchValue: ''
     }
   },
   methods: {
-
+    SearchResult: debounce(function () {
+      this.$emit('WatchValue', this.SearchValue)
+    }, 200)
   }
+
 }
 </script>
 
@@ -33,8 +36,9 @@ export default {
 .Search-Box{
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 85%;
   height: 60%;
+  margin-right: 5%;
   background-color: #f7f7f7;
   border-radius: 50px;
   padding-left: 30px;

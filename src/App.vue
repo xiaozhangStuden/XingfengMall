@@ -14,23 +14,31 @@ import router from './router'
 export default {
   data () {
     return {
-      transitionName: ''
+      transitionName: '',
+      whiteList: ['/login', '/home', '/register']
     }
   },
   created () {
-    router.beforeEach((to, from, next) => {
-      console.log(to)
-      if (to.meta.PageLevel > from.meta.PageLevel) {
-        this.transitionName = 'Side-fead'
-      } else if (to.meta.PageLevel < from.meta.PageLevel) {
-        this.transitionName = 'Side-fead-right'
-      } else {
-        this.transitionName = ''
-      }
-      next()
-    })
+    this.beforeEach()
   },
   methods: {
+    beforeEach () {
+      router.beforeEach((to, from, next) => {
+        if (this.whiteList.includes(to)) {
+          this.transitionName = ''
+          next()
+        } else {
+          if (to.meta.PageLevel > from.meta.PageLevel) {
+            this.transitionName = 'Side-fead'
+          } else if (to.meta.PageLevel < from.meta.PageLevel) {
+            this.transitionName = 'Side-fead-right'
+          } else {
+            this.transitionName = ''
+          }
+          next()
+        }
+      })
+    },
     hasOneOwnNavbar () {
       return !(this.$route.meta.PageLevel === 2)
     }

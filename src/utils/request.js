@@ -4,8 +4,9 @@ const services = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
 })
-axios.defaults.headers.Authorization = getCache('token') || ''
+
 services.interceptors.request.use((config) => {
+  config.headers.token = `${getCache('token')}` || ''
   // 成功的请求
   return config
 }, (err) => {

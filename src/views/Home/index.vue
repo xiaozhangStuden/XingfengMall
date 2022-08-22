@@ -10,7 +10,7 @@
             </div>
             <div class="Serach-input"  @click.stop="$router.push('/search')">
               <i class="iconfont icon-sousuo"></i>
-              <input type="text" placeholder="搜索"/>
+              <div>搜索</div>
             </div>
           </div>
         </div>
@@ -109,7 +109,6 @@ export default {
 </script>
 
 <style lang='less' scoped>
-@import '../../styles/variable.less';
 .Home {
   background-color: #fff;
   min-width: 350px;
@@ -122,6 +121,7 @@ export default {
   }
   .base-header {
     position: fixed;
+    width: 100%;
     z-index: 2;
     background-color: @primary;
   }
@@ -153,15 +153,15 @@ export default {
         i {
           margin-left: 15px;
         }
-        input {
+        div {
+          display: flex;
+          align-items: center;
           width: 100%;
-          font-size: 25px;
+          font-size: 28px;
           height: 100%;
+          color: #5a5f4a;
           margin-left: 10px;
           background: transparent;
-          &::placeholder {
-            font-size: 25px;
-          }
         }
       }
       p {

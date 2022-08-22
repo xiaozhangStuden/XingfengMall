@@ -72,7 +72,7 @@ export default {
       // {pattern:pwdValide,message:'密码必须以字母开头，且长度为6-15字符之间'}
       if (res.resultCode !== 200) return
       Toast.success('登录成功')
-      setCache('token', res.data.data)
+      setCache('token', res.data)
       this.$router.push('/home')
     }
   }

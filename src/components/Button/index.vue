@@ -1,6 +1,6 @@
 <template>
 <div class='Button'>
-  <button class="btn" :style="{backgroundColor:Bgc,borderRadius:radius ? '10px':'' }">{{context}}</button>
+  <button class="btn" :style="{backgroundColor:Bgc,borderRadius:radius ? '20px':'' }" @click="$emit('Search')">{{context}}</button>
 </div>
 </template>
 
@@ -26,12 +26,15 @@ export default {
 </script>
 
 <style lang='less' scoped>
+.Button{
+  padding-right: 30px;
+}
 button{
-  width: 90px;
-  height: 60px;
+  width: 100px;
+  height: 55px;
   color: #fff;
   text-align: center;
-  line-height: 60px;
+  line-height: 50px;
   font-size: 25px;
 }
 </style>
