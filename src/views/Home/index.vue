@@ -3,12 +3,12 @@
     <HeaderBar class="base-header">
       <template #left> <i class="iconfont icon-gengduo"></i></template>
       <template #center>
-        <div class="XinFeng-Search" @click="$route.push()">
+        <div class="XinFeng-Search">
           <div class="Search-model">
             <div class="Search-title">
               <p>新蜂商城</p>
             </div>
-            <div class="Serach-input">
+            <div class="Serach-input"  @click.stop="$router.push('/search')">
               <i class="iconfont icon-sousuo"></i>
               <input type="text" placeholder="搜索"/>
             </div>
@@ -109,6 +109,7 @@ export default {
 </script>
 
 <style lang='less' scoped>
+@import '../../styles/variable.less';
 .Home {
   background-color: #fff;
   min-width: 350px;

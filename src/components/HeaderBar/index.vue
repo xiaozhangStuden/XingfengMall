@@ -1,7 +1,7 @@
 <template>
   <div class="HeaderBar">
     <div class="Header-left">
-      <i class="nbicon nbfanhui ScopedSize" @click="Back" v-if="isBack"></i>
+      <i class="iconfont icon-fanhui ScopedSize" @click="Back" v-if="isBack"></i>
       <slot v-else name="left" class="ScopedSize"></slot>
     </div>
     <div class="Header-Center">
@@ -34,8 +34,6 @@ export default {
   },
   methods: {
     Back () {
-      console.log(this.$route)
-
       this.$store.commit('UpdateName', true)
       this.$nextTick(() => {
         this.$router.go(-1)

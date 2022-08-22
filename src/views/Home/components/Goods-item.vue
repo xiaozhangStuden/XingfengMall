@@ -1,16 +1,21 @@
 <template>
-<div class='Goods-item' v-if="Object.keys(GoodsItem)">
-  <img   @load="()=>LoadSuccessImg = true" @error="()=> LoadSuccessImg = false" v-show="LoadSuccessImg" :src="isExart(GoodsItem.goodsCoverImg) " alt="">
-  <Skeleton height='125px'  v-if="!LoadSuccessImg" ></Skeleton>
-  <div class="Goods-info">
-  <div>{{GoodsItem.goodsName}}</div>
-  <span>￥{{GoodsItem.sellingPrice}}</span>
+  <div class="Goods-item">
+    <transition name="fade" >
+      <div v-if="Object.keys(GoodsItem).length > 0">
+        <img :src="isExart(GoodsItem.goodsCoverImg)" alt="" />
+        <div class="Goods-info">
+          <div>{{ GoodsItem.goodsName }}</div>
+          <span>￥{{ GoodsItem.sellingPrice }}</span>
+        </div>
+      </div>
+      <div v-else>
+        <Skeleton height="125px"></Skeleton>
+      </div>
+    </transition>
   </div>
-</div>
 </template>
 
 <script>
-
 export default {
   name: 'Goods-item',
   props: {
@@ -27,36 +32,39 @@ export default {
   },
   methods: {
     isExart (Src) {
-      return /^https|http/.test(Src) ? Src : `http://backend-api-01.newbee.ltd/${Src}`
+      return /^https|http/.test(Src)
+        ? Src
+        : `http://backend-api-01.newbee.ltd/${Src}`
     }
   }
 }
 </script>
 
-<style lang='less' scoped>
-.Goods-item{
+<style lang="less" scoped>
+.Goods-item {
   display: inline-flex;
   width: 50%;
   padding: 10px;
   flex-direction: column;
   text-align: center;
   box-sizing: border-box;
-  img{
+  img {
+    display: block;
     width: 230px;
     margin: 0 auto;
     // .animation(fadeIn,1.5s,linear,.5s);
   }
-  .Goods-info{
+  .Goods-info {
     box-sizing: border-box;
     padding: 0px 20px;
-    div{
-    white-space: pre-wrap;
-    overflow: hidden;
-    font-size: 28px;
-    margin : 10px 0px;
-    text-overflow: ellipsis;
+    div {
+      white-space: pre-wrap;
+      overflow: hidden;
+      font-size: 28px;
+      margin: 10px 0px;
+      text-overflow: ellipsis;
     }
-    span{
+    span {
       color: @primary;
       font-size: 25px;
     }

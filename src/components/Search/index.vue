@@ -1,29 +1,22 @@
 <template>
-<div class='Search'>
-   <HeaderBar class="base-header">
-      <template #left> <i class="iconfont icon-gengduo"></i></template>
+  <div class="Search">
+    <HeaderBar isBack class="base-header">
       <template #center>
-        <div class="XinFeng-Search">
-          <div class="Search-model">
-            <div class="Search-title">
-              <p>新蜂商城</p>
-            </div>
-            <div class="Serach-input">
-              <i class="iconfont icon-sousuo"></i>
-              <input type="text" placeholder="搜索"/>
-            </div>
-          </div>
+        <div class="Search-Box">
+          <i class="iconfont icon-sousuo"></i>
+          <input type="text" name="Goods" placeholder="搜索">
         </div>
       </template>
-      <template #right><i class="iconfont icon-wode"></i></template>
+      <template #right>
+        <MyButton radius context='搜索'></MyButton>
+      </template>
     </HeaderBar>
-</div>
+  </div>
 </template>
 
 <script>
-
 export default {
-  name: 'index',
+  name: 'Search',
   components: {},
   data () {
     return {
@@ -36,5 +29,25 @@ export default {
 }
 </script>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
+.Search-Box{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60%;
+  background-color: #f7f7f7;
+  border-radius: 50px;
+  padding-left: 30px;
+  i{
+    margin-top: 4px;
+    margin-right: 15px;
+  }
+  input{
+    width: 100%;
+    height: 100%;
+    font-size: 25px;
+    background-color: transparent;
+  }
+}
+
 </style>

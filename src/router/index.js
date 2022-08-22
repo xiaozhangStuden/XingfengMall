@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/home'
   },
   {
     path: '/home',
@@ -13,7 +13,8 @@ const routes = [
     component: () => import('@/views/Home/index.vue'),
     meta: {
       title: '首页',
-      Animation: false
+      // 页面级别
+      PageLevel: 1
     }
   },
   {
@@ -22,7 +23,7 @@ const routes = [
     component: () => import('@/views/Category/index.vue'),
     meta: {
       title: '分类',
-      Animation: false
+      PageLevel: 1
     }
   },
   {
@@ -31,7 +32,7 @@ const routes = [
     component: () => import('@/views/Login/index.vue'),
     meta: {
       title: '登录',
-      Animation: true
+      PageLevel: 2
     }
   },
   {
@@ -40,7 +41,7 @@ const routes = [
     component: () => import('@/views/Register/index.vue'),
     meta: {
       title: '注册',
-      Animation: true
+      PageLevel: 2
     }
   },
   {
@@ -49,7 +50,7 @@ const routes = [
     component: () => import('@/views/ShopCart/index.vue'),
     meta: {
       title: '购物车',
-      Animation: false
+      PageLevel: 1
     }
   },
   {
@@ -58,7 +59,16 @@ const routes = [
     component: () => import('@/views/Profile/index.vue'),
     meta: {
       title: '我的',
-      Animation: false
+      PageLevel: 1
+    }
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import('@/views/SearchPage/index.vue'),
+    meta: {
+      title: '搜索',
+      PageLevel: 2
     }
   }
 ]

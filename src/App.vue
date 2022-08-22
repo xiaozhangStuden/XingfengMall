@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <transition :name="transitionName()" >
+      <transition :name="transitionName" >
         <keep-alive :include="['Home','Category,Swiper']">
           <router-view></router-view>
         </keep-alive>
@@ -10,26 +10,31 @@
 </template>
 
 <script>
+import router from './router'
 export default {
   data () {
-    return {}
+    return {
+      transitionName: ''
+    }
+  },
+  created () {
+    router.beforeEach((to, from, next) => {
+      console.log(to)
+      if (to.meta.PageLevel > from.meta.PageLevel) {
+        this.transitionName = 'Side-fead'
+      } else if (to.meta.PageLevel < from.meta.PageLevel) {
+        this.transitionName = 'Side-fead-right'
+      } else {
+        this.transitionName = ''
+      }
+      next()
+    })
   },
   methods: {
-    transitionName () {
-      if (this.$route.meta.Animation) {
-        return this.$store.getters.AnimationName
-      } else {
-        return ''
-      }
-    },
     hasOneOwnNavbar () {
-      const path = this.$route.path
-      const blackList = ['/login', '/register']
-      return !blackList.includes(path)
+      return !(this.$route.meta.PageLevel === 2)
     }
-
   }
 }
+
 </script>
-<style lage='less' scoped>
-</style>

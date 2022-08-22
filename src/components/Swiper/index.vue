@@ -4,10 +4,10 @@
         <van-swipe class="my-swipe" v-if="SwiperList.length" :autoplay="3000" indicator-color="#a3b7c8">
         <van-swipe-item v-for="item in SwiperList" :key="item.carouselUrl">
         <img :src="item.carouselUrl" />
-      </van-swipe-item></van-swipe>
-        <!-- <div v-else  >
-          <van-skeleton style="margin-top:15px"  title :row="3" />
-        </div> -->
+      </van-swipe-item>
+      </van-swipe>
+          <!-- <van-skeleton v-else style="margin-top:15px"  title :row="3" /> -->
+          <!-- <Skeleton v-else></Skeleton> -->
      </transition>
   </div>
 </template>
