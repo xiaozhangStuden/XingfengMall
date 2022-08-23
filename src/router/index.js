@@ -70,6 +70,15 @@ const routes = [
       title: '搜索',
       PageLevel: 2
     }
+  },
+  {
+    path: '/search/list',
+    name: 'List',
+    component: () => import('@/views/SearchPage/components/SearchGoodsist/index.vue'),
+    meta: {
+      title: '搜索列表',
+      PageLevel: 2
+    }
   }
 ]
 

@@ -1,31 +1,25 @@
 <template>
   <div class="SearchPage">
-    <Search @WatchValue="SearchGoods"></Search>
-    <div class="Search-Zone">
-      <div class="Search-Category">
-        <div
-          :class="{ active: CurrentIndex === index }"
-          v-for="(item, index) in CategoryList"
-          :key="item"
-          @click="getindex(index)"
-        >
-          {{ item }}
-        </div>
-      </div>
-      <img
-        class="empty"
-        src="https://s.yezgea02.com/1604041313083/kesrtd.png"
-        alt="搜索"
-      />
+    <Search @WatchValue="SearchGoods" @handelSearch='handelSearch'></Search>
+    <div class="Search-Zone" v-if="!SearchResutList.length">
+      <img class="empty" src="https://s.yezgea02.com/1604041313083/kesrtd.png" alt="搜索"/>
+    </div>
+    <div v-else class="result-List">
+      <ul @click="handelSearch">
+        <li v-for="item in SearchResutList" :key="item.goodsId">
+          <i class="iconfont icon-sousuo"></i>
+          <span>{{item.goodsName}}</span>
+          </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
 import { SearchGoodsList } from '@/api/Goods'
+import { mapState } from 'vuex'
 export default {
   name: 'SearchPage',
-  components: {},
   data () {
     return {
       CategoryList: ['推荐', '新品', '价格'],
@@ -33,13 +27,25 @@ export default {
       SearchValue: ''
     }
   },
+  computed: {
+    ...mapState('SearchGoods', ['SearchResutList'])
+  },
   methods: {
     getindex (index) {
       this.CurrentIndex = index
     },
     async SearchGoods (keyword) {
-      const res = await SearchGoodsList(keyword)
-      console.log(res)
+      if (keyword) {
+        try {
+          const { data } = await SearchGoodsList(keyword)
+          this.$store.commit('SearchGoods/loadSearchList', data.list)
+        } catch (error) {
+
+        }
+      }
+    },
+    handelSearch () {
+      this.$router.push('/search/list')
     }
   }
 }
@@ -48,14 +54,13 @@ export default {
 <style lang="less" scoped>
 .SearchPage {
   height: 100%;
-}
+  width: 100%;
 .Search-Zone {
   padding: 10px 35px;
   .Search-Category {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 100%;
     height: 60px;
     border: 1px solid @primary;
     border-right: 0px;
@@ -75,6 +80,30 @@ export default {
       background-color: @primary;
     }
   }
+}
+.result-List{
+  width: 100%;
+  height: 500px;
+
+  li{
+    display: flex;
+    height: 60px;
+    width: 100%;
+    line-height: 60px;
+    font-size: 25px;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding-left: 15px;
+    border-bottom: 1px solid rgb(238, 235, 235);
+    i{
+      padding: 0px 15px;
+    }
+    &:hover{
+      background-color: rgb(240, 238, 238);
+    }
+  }
+
+}
 }
 .empty {
   display: block;

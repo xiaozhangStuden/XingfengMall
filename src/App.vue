@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import router from './router'
+// import router from './router'
 export default {
   data () {
     return {
@@ -23,21 +23,21 @@ export default {
   },
   methods: {
     beforeEach () {
-      router.beforeEach((to, from, next) => {
-        if (this.whiteList.includes(to)) {
-          this.transitionName = ''
-          next()
-        } else {
-          if (to.meta.PageLevel > from.meta.PageLevel) {
-            this.transitionName = 'Side-fead'
-          } else if (to.meta.PageLevel < from.meta.PageLevel) {
-            this.transitionName = 'Side-fead-right'
-          } else {
-            this.transitionName = ''
-          }
-          next()
-        }
-      })
+      // router.beforeEach((to, from, next) => {
+      //   if (this.whiteList.includes(to)) {
+      //     this.transitionName = ''
+      //     next()
+      //   } else {
+      //     if (to.meta.PageLevel >= from.meta.PageLevel) {
+      //       this.transitionName = 'Side-fead'
+      //     } else if (to.meta.PageLevel < from.meta.PageLevel) {
+      //       this.transitionName = 'Side-fead-right'
+      //     } else {
+      //       this.transitionName = ''
+      //     }
+      //     next()
+      //   }
+      // })
     },
     hasOneOwnNavbar () {
       return !(this.$route.meta.PageLevel === 2)
